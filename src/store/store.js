@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { calendarSlice, uiSlice } from './';
+import { authSlice, calendarSlice, uiSlice } from './';
 
 
 export const store = configureStore({
     reducer: {
+        authStore: authSlice.reducer,
         calendarStore: calendarSlice.reducer,
         uiStore: uiSlice.reducer,
     },
