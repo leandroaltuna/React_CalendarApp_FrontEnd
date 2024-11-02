@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useCalendarModal, useCalendarStore, useUiStore } from '../../hooks';
+import { getEnvVariables } from '../../helpers';
 
 
 registerLocale( 'es', es );
@@ -23,7 +24,9 @@ const customStyles = {
     },
 };
 
-Modal.setAppElement('#root');
+if ( getEnvVariables().VITE_MODE !== 'test' ) {
+    Modal.setAppElement('#root');
+}
 
 export const CalendarModal = () => {
 
@@ -48,7 +51,7 @@ export const CalendarModal = () => {
 
         if ( formValues.title.length <= 0 ) return;
 
-        console.log( formValues );
+        // console.log( formValues );
 
         await startSavingEvent( formValues );
         closeDateModal();
